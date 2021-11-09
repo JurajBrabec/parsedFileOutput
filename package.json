@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "author": "Juraj Brabec",
+  "homepage": "https://github.com/JurajBrabec/parsedFileOutput",
   "license": "ISC",
   "devDependencies": {
     "esbuild": "^0.13.13",
