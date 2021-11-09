@@ -17,7 +17,8 @@ module.exports = ({
   const parse = (splits) => forEach(splits, parser);
   const asArray = async (items) => {
     const result = [];
-    for await (const item of items) result.push(item);
+    for await (const item of items)
+      Array.isArray(item) ? result.push(...item) : result.push(item);
     return result;
   };
   return (args) => {

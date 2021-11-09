@@ -29,7 +29,8 @@ module.exports = ({
     if (!text) return false;
     const values = split ? split(text, _split) : _split(text);
     if (!values) return false;
-    const row = assign ? assign(values, _assign) : _assign(values);
-    return row;
+    const handler = (values) =>
+      assign ? assign(values, _assign) : _assign(values);
+    return Array.isArray(values[0]) ? values.map(handler) : handler(values);
   };
 };
