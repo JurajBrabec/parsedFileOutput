@@ -1,0 +1,16 @@
+{
+  "name": "parsed-file-output",
+  "version": "1.0.0",
+  "description": "Parsed File Output",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "esbuild ./src/index.js --bundle --minify --platform=node --outfile=./dist/parsedFileOutput.js",
+    "test": "jest"
+  },
+  "author": "Juraj Brabec",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.13.13",
+    "jest": "^27.3.1"
+  }
+}
