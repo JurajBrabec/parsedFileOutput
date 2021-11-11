@@ -1,9 +1,9 @@
 # `ParsedFileOutput` package
 
 - [FileOutput](#file-output)
-- SplitFileOutput
-- ParsedFileOutput
-- Parser
+- [SplitFileOutput](#split-file-output)
+- [ParsedFileOutput](#parsed-file-output)
+- [Parser](#parser)
 
 <a name="file-output"></a>
 
