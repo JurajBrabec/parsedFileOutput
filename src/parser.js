@@ -21,9 +21,10 @@ module.exports = ({
         const match = value.match(field.regExp);
         value = match ? match[1] : undefined;
       }
-      row[name] = cast ? cast(value, field) : value;
+      row[name] = _cast(value, field);
       return row;
     }, {});
+  const _cast = (value, field) => (cast ? cast(value, field) : value);
 
   return (text) => {
     if (!text) return false;

@@ -1,11 +1,6 @@
 const FileOutput = require('./fileOutput');
 
-module.exports = ({
-  file,
-  args = [],
-  options = { encoding: 'utf8', maxBuffer: Infinity },
-  delimiter = /\r?\n/,
-}) => {
+module.exports = ({ file, args = [], options, delimiter = /\r?\n/ }) => {
   const stream = FileOutput({ file, args, options });
   const split = async function* (stream) {
     let remainder = '';
@@ -17,7 +12,7 @@ module.exports = ({
     if (remainder !== '') yield remainder.trim();
   };
 
-  return (args) => {
+  return (args = []) => {
     this.asSplits = () => stream(args).asStream().then(split);
     return this;
   };
