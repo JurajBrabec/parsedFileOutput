@@ -9,10 +9,7 @@ module.exports = ({
     new Promise((resolve, reject) => {
       const proc = execFile(file, [...args, ...moreArgs], options);
       proc.on('error', reject);
-      proc.on('spawn', () => {
-        proc.stderr.pipe(proc.stdout);
-        resolve(proc.stdout);
-      });
+      proc.on('spawn', () => resolve(proc.stdout.wrap(proc.stderr)));
     });
   const asString = async (chunks) => {
     let result = '';
