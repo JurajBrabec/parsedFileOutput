@@ -1,6 +1,6 @@
 {
   "name": "parsed-file-output",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parsed File Output",
   "main": "src/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "homepage": "https://github.com/JurajBrabec/parsedFileOutput",
   "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.13.13",
+    "esbuild": "^0.14.23",
     "jest": "^27.3.1"
   }
 }

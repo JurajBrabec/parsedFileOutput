@@ -1,4 +1,5 @@
 const { execFile } = require('child_process');
+const { PassThrough } = require('stream');
 
 module.exports = ({
   file,
@@ -9,7 +10,13 @@ module.exports = ({
     new Promise((resolve, reject) => {
       const proc = execFile(file, [...args, ...moreArgs], options);
       proc.on('error', reject);
-      proc.on('spawn', () => resolve(proc.stdout.wrap(proc.stderr)));
+      proc.on('spawn', () => {
+        const output = new PassThrough();
+        proc.stdout.pipe(output);
+        proc.stderr.pipe(output);
+        resolve(output);
+        //        resolve(proc.stdout.wrap(proc.stderr));
+      });
     });
   const asString = async (chunks) => {
     let result = '';
