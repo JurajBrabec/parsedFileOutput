@@ -1,14 +1,14 @@
 const { execFile } = require('child_process');
 const { PassThrough } = require('stream');
 
-module.exports = ({
-  file,
-  args = [],
-  options = { encoding: 'utf8', maxBuffer: Infinity },
-}) => {
+module.exports = ({ file, args = [], options = {} }) => {
   const stream = (moreArgs = []) =>
     new Promise((resolve, reject) => {
-      const proc = execFile(file, [...args, ...moreArgs], options);
+      const opts = { encoding: 'utf8', maxBuffer: Infinity };
+      const proc = execFile(file, [...args, ...moreArgs], {
+        ...opts,
+        ...options,
+      });
       proc.on('error', reject);
       proc.on('spawn', () => {
         const output = new PassThrough();
