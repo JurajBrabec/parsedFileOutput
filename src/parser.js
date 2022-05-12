@@ -17,7 +17,7 @@ module.exports = ({
       if (typeof field === 'string') field = { type: field };
       if (field.index !== undefined) index = field.index;
       let value = values[index];
-      if (field.regExp) {
+      if (value && field.regExp) {
         const match = value.match(field.regExp);
         value = match ? match[1] : undefined;
       }
