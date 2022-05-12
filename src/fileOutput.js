@@ -5,13 +5,20 @@ module.exports = ({ file, args = [], options = {} }) => {
   const stream = (moreArgs = []) =>
     new Promise((resolve, reject) => {
       const opts = { encoding: 'utf8', maxBuffer: Infinity };
+      const output = new PassThrough();
       const proc = execFile(file, [...args, ...moreArgs], {
         ...opts,
         ...options,
       });
+      proc.on('close', (code) => {
+        if (output.closed) return;
+        const msg = options.timeout
+          ? `Error -1 (Terminated after ${options.timeout}ms)`
+          : `Error ${code}`;
+        output.end(msg);
+      });
       proc.on('error', reject);
       proc.on('spawn', () => {
-        const output = new PassThrough();
         proc.stdout.pipe(output);
         proc.stderr.pipe(output);
         resolve(output);
