@@ -11,7 +11,7 @@
   "homepage": "https://github.com/JurajBrabec/parsedFileOutput",
   "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.14.38",
+    "esbuild": "^0.15.1",
     "jest": "^28.1.0"
   }
 }
